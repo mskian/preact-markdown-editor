@@ -46,6 +46,7 @@ export const Editor = ({ onChange }) => {
         case 'code':
         case 'quote':
         case 'strikethrough':
+        case 'pre':
           formattedText = applyMarkdownStyle(content, style, start, end);
           break;
         default:

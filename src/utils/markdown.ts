@@ -19,6 +19,9 @@ export const applyMarkdownStyle = (text: string, style: string, start: number, e
     case 'code':
       markdown = wrapSelection(text, '`', '`', start, end);
       break;
+    case 'pre':
+      markdown = wrapSelection(text, '```', '```', start, end);
+      break;
     case 'quote':
       markdown = insertAtStart(text, '> ', start);
       break;

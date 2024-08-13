@@ -3,7 +3,7 @@ import { AiOutlineBold, AiOutlineItalic, AiOutlineLink, AiOutlineNumber } from '
 import { BiHeading } from 'react-icons/bi';
 import { FiImage, FiTwitch, FiList } from 'react-icons/fi';
 import { RiStrikethrough } from 'react-icons/ri';
-import { FaRegCopy, FaRegTrashAlt } from 'react-icons/fa';
+import { FaCode, FaRegCopy, FaRegTrashAlt, FaRegFileCode } from 'react-icons/fa';
 import { MdHorizontalRule } from "react-icons/md";
 
 interface ToolbarProps {
@@ -35,6 +35,8 @@ export const Toolbar = ({ onFormat, onClear, onCopy, onSymbolClick, symbolType, 
         >
         <MdHorizontalRule />
       </button>
+      <Button icon={<span className="text-xl"><FaCode /></span>} style="code" onClick={onFormat} />
+      <Button icon={<span className="text-xl"><FaRegFileCode /></span>} style="pre" onClick={onFormat} />
       <Button icon={<span className="text-xl"><FaRegCopy /></span>} style="copy" onClick={onCopy} />
       <Button icon={<span className="text-xl"><FaRegTrashAlt /></span>} style="clear" onClick={onClear} />
     </div>
