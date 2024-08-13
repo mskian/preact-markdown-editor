@@ -1,0 +1,24 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"bulma": "purgecss --css ./src/components/css/bulma.css --content './src/**/*.tsx' -o ./src/components/css/app.css"
+	},
+	"dependencies": {
+		"marked": "^14.0.0",
+		"preact": "^10.23.2",
+		"react-icons": "^5.3.0"
+	},
+	"devDependencies": {
+		"@preact/preset-vite": "^2.9.0",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.4.41",
+		"purgecss": "^6.0.0",
+		"tailwindcss": "^3.4.9",
+		"typescript": "^5.5.4",
+		"vite": "^5.4.0"
+	}
+}
