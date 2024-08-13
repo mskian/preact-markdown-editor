@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import './css/bulma.css';
 import './css/preview.css';
 
@@ -13,19 +14,22 @@ export const Preview = ({ content, darkMode }: PreviewProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const convertMarkdown = async () => {
-      if (!content) {
+    const storedContent = localStorage.getItem('markdownContent') || '';
+    
+    const convertMarkdown = async (markdownContent: string) => {
+      if (!markdownContent) {
         setHtmlContent('');
         return;
       }
 
       try {
-        if (typeof content !== 'string' || content.trim() === '') {
+        if (typeof markdownContent !== 'string' || markdownContent.trim() === '') {
           throw new Error('Invalid content');
         }
 
-        const markdown = await marked(content);
-        setHtmlContent(markdown);
+        const markdown = await marked(markdownContent);
+        const sanitizedHtml = DOMPurify.sanitize(markdown);
+        setHtmlContent(sanitizedHtml);
         setError(null);
       } catch (err) {
         console.error('Error rendering preview:', err);
@@ -34,19 +38,18 @@ export const Preview = ({ content, darkMode }: PreviewProps) => {
       }
     };
 
-    convertMarkdown();
+    convertMarkdown(content || storedContent);
   }, [content]);
 
   const commonClasses = "box p-6 border rounded-md overflow-auto break-words";
   const modeClasses = darkMode ? "dark-mode" : "light-mode";
-
   const errorClasses = "notification is-danger";
 
   return (
     <div className={`${commonClasses} ${modeClasses}`}>
       {error ? (
         <div className={errorClasses}>{error}</div>
-      ) : !content ? (
+      ) : !htmlContent ? (
         <div className="p-4 has-text-grey">Nothing to preview...</div>
       ) : (
         <div
@@ -56,4 +59,4 @@ export const Preview = ({ content, darkMode }: PreviewProps) => {
       )}
     </div>
   );
-}
+};

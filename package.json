@@ -8,6 +8,8 @@
 		"bulma": "purgecss --css ./src/components/css/bulma.css --content './src/**/*.tsx' -o ./src/components/css/app.css"
 	},
 	"dependencies": {
+		"@types/dompurify": "^3.0.5",
+		"dompurify": "^3.1.6",
 		"marked": "^14.0.0",
 		"preact": "^10.23.2",
 		"react-icons": "^5.3.0"

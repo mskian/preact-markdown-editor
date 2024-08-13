@@ -3,7 +3,7 @@ import { AiOutlineBold, AiOutlineItalic, AiOutlineLink, AiOutlineNumber } from '
 import { BiHeading } from 'react-icons/bi';
 import { FiImage, FiTwitch, FiList } from 'react-icons/fi';
 import { RiStrikethrough } from 'react-icons/ri';
-import { FaCode, FaRegCopy, FaRegTrashAlt, FaRegFileCode } from 'react-icons/fa';
+import { FaCode, FaRegCopy, FaRegTrashAlt, FaRegFileCode, FaSlash } from 'react-icons/fa';
 import { MdHorizontalRule } from "react-icons/md";
 
 interface ToolbarProps {
@@ -34,6 +34,14 @@ export const Toolbar = ({ onFormat, onClear, onCopy, onSymbolClick, symbolType, 
           title="Add hr Line"
         >
         <MdHorizontalRule />
+      </button>
+      <button
+          type="button"
+          onClick={() => onSymbolClick('\\')}
+          class="flex items-center justify-center p-2 text-xl text-text bg-editorBg hover:bg-buttonHover hover:text-white rounded-md focus:outline-none transition"
+          title="Add hr Line"
+        >
+        <FaSlash />
       </button>
       <Button icon={<span className="text-xl"><FaCode /></span>} style="code" onClick={onFormat} />
       <Button icon={<span className="text-xl"><FaRegFileCode /></span>} style="pre" onClick={onFormat} />
